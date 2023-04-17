@@ -41,7 +41,7 @@ function modoEazy(escolha) {
 
             checarVitoria();
         }
-        if (!vitoria) {
+        if ((!vitoria) && (contRodada<9)) {
             do {
                 randomChoice = Math.floor(Math.random() * 9);
                 console.log(randomChoice);
