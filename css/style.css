@@ -1,0 +1,54 @@
+body{
+    background-color: rgb(255, 248, 219);
+    color: rgb(0, 22, 119);
+    font-family: cursive;
+}
+h1{
+    text-align: center;
+    border-bottom: 2px solid rgba(204, 15, 47);
+    padding-bottom: 2px;
+    
+}
+#tabuleiro {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+    border: 1px solid rgb(0,15,85);
+    background-color: rgb(173,216,230);
+}
+.linha{
+    display: flex;
+}
+.linha div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 65px;
+    height: 65px;
+    border: 2px solid rgb(0,15,85);
+    font-size: 60px;
+    cursor: pointer;
+}
+.linha div:hover {
+    background-color: aliceblue;
+}
+
+.conteudo{
+    display: flex;
+}
+.jogo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+.resumo{
+    width: 50%;
+    padding: 20px;
+}
+.resumo h2{
+    text-align: center;
+}
