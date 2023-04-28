@@ -1,8 +1,16 @@
+/**
+Author name : Gabriel de Faria Campos
+Created at : 4/27/2023  10:17:08 PM
+Updated at :4/27/2023  10:18:40 PM
+*/
+
+
 //variavel que armazena o modo de jogo
 let modo = 0;
 //vetor que representa o tabuleiro (é mais simples que usar matriz ☺)
 let tabuleiro = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-
+let tabuleiroDinamico = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let escolhaMaquina = 10;
 //todos os inputs possiveis
 document.getElementById("0").onclick = function () { jogo(0) };
 document.getElementById("1").onclick = function () { jogo(1) };
@@ -20,14 +28,70 @@ let contRodada = 0;
 function jogo(escolha) {
     switch (modo) {
         case 0:
-            siglePlayer(escolha);
+            multiplayer(escolha);
             break;
         case 1:
             modoEazy(escolha);
             break;
+        case 2:
+            modoMedio(escolha);
+            break;
     }
+}
 
+function modoMedio(escolha) {
+    if (document.getElementById(escolha).innerHTML == "") {
+        document.getElementById(escolha).innerHTML = "x";
+        switch (contRodada) {
+            case 0:
+                switch (escolha) {
+                    case 2:
+                        escolhaMaquina = 6;
+                        break;
+                    case 6:
+                        escolhaMaquina = 2;
+                        break;
+                    case 8:
+                        escolhaMaquina = 0;
+                        break;
+                    default:
+                        escolhaMaquina = 8;
+                        break;
+                }
+                tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
+                console.log(tabuleiro);
+                contRodada++;
+                document.getElementById(escolhaMaquina).innerHTML = "o";
+                tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
+                break;
+        default:
+            if (contRodada % 2 == 0) {
+                document.getElementById(escolha).innerHTML = "x";
+                tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
+                console.log(tabuleiro);
+                contRodada++;
+                checarVitoria();
+            }
+            
+            if ((!vitoria) && (contRodada < 9)) {
+                console.log(perdendo());
+                console.log(tabuleiro);
+                do {
+                    randomChoice = Math.floor(Math.random() * 9);
+                    console.log(randomChoice);
+                } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
+                document.getElementById(randomChoice).innerHTML = "o";
+                tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
+                console.log(tabuleiro);
+                contRodada++;
+            }
+            //armazenar as jogadas no vetor
 
+            document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
+            checarVitoria();
+            break;
+        }    
+    }
 }
 
 function modoEazy(escolha) {
@@ -41,7 +105,7 @@ function modoEazy(escolha) {
 
             checarVitoria();
         }
-        if ((!vitoria) && (contRodada<9)) {
+        if ((!vitoria) && (contRodada < 9)) {
             do {
                 randomChoice = Math.floor(Math.random() * 9);
                 console.log(randomChoice);
@@ -57,7 +121,7 @@ function modoEazy(escolha) {
         checarVitoria();
     }
 }
-function siglePlayer(escolha) {
+function multiplayer(escolha) {
     if (document.getElementById(escolha).innerHTML == "") {
         if (contRodada % 2 == 0) {
             document.getElementById("textoJogo").innerHTML = "Vez de o";
@@ -77,6 +141,21 @@ function siglePlayer(escolha) {
     }
 }
 
+function perdendo(){
+    let tabuleiroTestes;
+    for(let cont=0; cont < 9; cont++){
+        tabuleiroTestes = [...tabuleiro];
+        if(!(tabuleiro[cont]=="x" || tabuleiro[cont]=="o")){
+            tabuleiro[cont] = "o"
+            if(checarVitoria()){
+                console.log("->"+cont);
+                return true;
+            }
+        }
+        tabuleiro = [...tabuleiro];
+    }
+    return false;
+}
 function checarVitoria() {
     if (tabuleiro[0] == tabuleiro[1] && tabuleiro[1] == tabuleiro[2]) {
         document.getElementById("0").style.color = "#CC0F2F";
@@ -151,11 +230,15 @@ function trocarModo() {
     switch (modo) {
         case 0:
             limpar()
-            modo++;
+            modo = 1;
             document.getElementById("modo").innerHTML = "Modo: fácil";
-
             break;
         case 1:
+            limpar()
+            modo = 2;
+            document.getElementById("modo").innerHTML = "Modo: médio";
+            break;
+        case 2:
             limpar()
             modo = 0;
             document.getElementById("modo").innerHTML = "Modo: multiplayer";
