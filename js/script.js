@@ -73,22 +73,29 @@ function modoMedio(escolha) {
                 if ((!vitoria) && (contRodada < 9)) {
                     //console.log(ganhando());
                     console.log(tabuleiro);
-                    if (ganhando()){
+                    if(ganhando()){
                         document.getElementById(escolhaMaquina).innerHTML = "o";
                         tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
                         console.log(tabuleiro);
                         contRodada++;
                     }else{
-                        do {
-                            randomChoice = Math.floor(Math.random() * 9);
-                            console.log(randomChoice);
-                        } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
-                        document.getElementById(randomChoice).innerHTML = "o";
-                        tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
-                        console.log(tabuleiro);
-                        contRodada++;
+                        if (perdendo()){
+                            document.getElementById(escolhaMaquina).innerHTML = "o";
+                            tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
+                            console.log(tabuleiro);
+                            contRodada++;
+                        }else{
+                            do {
+                                randomChoice = Math.floor(Math.random() * 9);
+                                console.log(randomChoice);
+                            } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
+                            document.getElementById(randomChoice).innerHTML = "o";
+                            tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
+                            console.log(tabuleiro);
+                            contRodada++;
+                        }
                     }
-                }
+                    }
                 //armazenar as jogadas no vetor
 
                 document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
@@ -145,6 +152,7 @@ function multiplayer(escolha) {
     }
 }
 
+
 function ganhando() {
     tabuleiroTemp = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     result = false;
@@ -154,8 +162,7 @@ function ganhando() {
     for (let cont = 0; cont < 9; cont++) {
         if (!(tabuleiro[cont] == "x" || tabuleiro[cont] == "o")) {
             tabuleiro[cont] = "o";
-            checarVitoria();
-            if (vitoria && result == false) {
+            if (preverVitoria() && result == false) {
                 escolhaMaquina = cont;
                 console.log("->" + cont);
                 result = true;
@@ -170,6 +177,46 @@ function ganhando() {
     console.log("ooooooooooooo----------" + tabuleiro);
     return result;
 }
+function perdendo() {
+    tabuleiroTemp = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    result = false;
+    for (let cont = 0; cont < 9; cont++) {
+        tabuleiroTemp[cont] = tabuleiro[cont];
+    }
+    for (let cont = 0; cont < 9; cont++) {
+        if (!(tabuleiro[cont] == "x" || tabuleiro[cont] == "o")) {
+            tabuleiro[cont] = "x";
+            if (preverVitoria() && result == false) {
+                escolhaMaquina = cont;
+                console.log("->" + cont);
+                result = true;
+            }
+            tabuleiro[cont] = cont;
+        }
+    }
+    for (let cont = 0; cont < 9; cont++) {
+        tabuleiro[cont] = tabuleiroTemp[cont];
+    }
+    console.log("!!!!!!!!!oooooooooo!" + tabuleiroTemp);
+    console.log("ooooooooooooo----------" + tabuleiro);
+    return result;
+}
+
+function preverVitoria() {
+    if ((tabuleiro[0] == tabuleiro[1] && tabuleiro[1] == tabuleiro[2]) ||
+    (tabuleiro[3] == tabuleiro[4] && tabuleiro[4] == tabuleiro[5]) ||
+    (tabuleiro[6] == tabuleiro[7] && tabuleiro[7] == tabuleiro[8]) ||
+    (tabuleiro[0] == tabuleiro[3] && tabuleiro[3] == tabuleiro[6]) ||
+    (tabuleiro[1] == tabuleiro[4] && tabuleiro[4] == tabuleiro[7]) ||
+    (tabuleiro[2] == tabuleiro[5] && tabuleiro[5] == tabuleiro[8]) ||
+    (tabuleiro[0] == tabuleiro[4] && tabuleiro[4] == tabuleiro[8]) ||
+    (tabuleiro[2] == tabuleiro[4] && tabuleiro[4] == tabuleiro[6])) {
+    return true;
+    }else{
+        return false;
+    }
+}
+
 function checarVitoria() {
     if (tabuleiro[0] == tabuleiro[1] && tabuleiro[1] == tabuleiro[2]) {
         document.getElementById("0").style.color = "#CC0F2F";
