@@ -4,12 +4,12 @@ Created at : 4/27/2023  10:17:08 PM
 Updated at :4/27/2023  10:18:40 PM
 */
 
-
 //variavel que armazena o modo de jogo
 let modo = 0;
 //vetor que representa o tabuleiro (é mais simples que usar matriz ☺)
+let tabuleiroTemp = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+let result = false;
 let tabuleiro = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-let tabuleiroDinamico = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let escolhaMaquina = 10;
 //todos os inputs possiveis
 document.getElementById("0").onclick = function () { jogo(0) };
@@ -42,6 +42,8 @@ function jogo(escolha) {
 function modoMedio(escolha) {
     if (document.getElementById(escolha).innerHTML == "") {
         document.getElementById(escolha).innerHTML = "x";
+        tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
+        console.log(tabuleiro);
         switch (contRodada) {
             case 0:
                 switch (escolha) {
@@ -58,39 +60,41 @@ function modoMedio(escolha) {
                         escolhaMaquina = 8;
                         break;
                 }
-                tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
-                console.log(tabuleiro);
                 contRodada++;
                 document.getElementById(escolhaMaquina).innerHTML = "o";
                 tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
                 break;
-        default:
-            if (contRodada % 2 == 0) {
-                document.getElementById(escolha).innerHTML = "x";
-                tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
-                console.log(tabuleiro);
-                contRodada++;
-                checarVitoria();
-            }
-            
-            if ((!vitoria) && (contRodada < 9)) {
-                console.log(perdendo());
-                console.log(tabuleiro);
-                do {
-                    randomChoice = Math.floor(Math.random() * 9);
-                    console.log(randomChoice);
-                } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
-                document.getElementById(randomChoice).innerHTML = "o";
-                tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
-                console.log(tabuleiro);
-                contRodada++;
-            }
-            //armazenar as jogadas no vetor
+            default:
+                if (contRodada % 2 == 0) {
+                    contRodada++;
+                    checarVitoria();
+                }
 
-            document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
-            checarVitoria();
-            break;
-        }    
+                if ((!vitoria) && (contRodada < 9)) {
+                    //console.log(ganhando());
+                    console.log(tabuleiro);
+                    if (ganhando()){
+                        document.getElementById(escolhaMaquina).innerHTML = "o";
+                        tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
+                        console.log(tabuleiro);
+                        contRodada++;
+                    }else{
+                        do {
+                            randomChoice = Math.floor(Math.random() * 9);
+                            console.log(randomChoice);
+                        } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
+                        document.getElementById(randomChoice).innerHTML = "o";
+                        tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
+                        console.log(tabuleiro);
+                        contRodada++;
+                    }
+                }
+                //armazenar as jogadas no vetor
+
+                document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
+                checarVitoria();
+                break;
+        }
     }
 }
 
@@ -141,20 +145,30 @@ function multiplayer(escolha) {
     }
 }
 
-function perdendo(){
-    let tabuleiroTestes;
-    for(let cont=0; cont < 9; cont++){
-        tabuleiroTestes = [...tabuleiro];
-        if(!(tabuleiro[cont]=="x" || tabuleiro[cont]=="o")){
-            tabuleiro[cont] = "o"
-            if(checarVitoria()){
-                console.log("->"+cont);
-                return true;
-            }
-        }
-        tabuleiro = [...tabuleiro];
+function ganhando() {
+    tabuleiroTemp = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    result = false;
+    for (let cont = 0; cont < 9; cont++) {
+        tabuleiroTemp[cont] = tabuleiro[cont];
     }
-    return false;
+    for (let cont = 0; cont < 9; cont++) {
+        if (!(tabuleiro[cont] == "x" || tabuleiro[cont] == "o")) {
+            tabuleiro[cont] = "o";
+            checarVitoria();
+            if (vitoria && result == false) {
+                escolhaMaquina = cont;
+                console.log("->" + cont);
+                result = true;
+            }
+            tabuleiro[cont] = cont;
+        }
+    }
+    for (let cont = 0; cont < 9; cont++) {
+        tabuleiro[cont] = tabuleiroTemp[cont];
+    }
+    console.log("!!!!!!!!!oooooooooo!" + tabuleiroTemp);
+    console.log("ooooooooooooo----------" + tabuleiro);
+    return result;
 }
 function checarVitoria() {
     if (tabuleiro[0] == tabuleiro[1] && tabuleiro[1] == tabuleiro[2]) {
