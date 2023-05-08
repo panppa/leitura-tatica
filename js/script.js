@@ -36,6 +36,9 @@ function jogo(escolha) {
         case 2:
             modoMedio(escolha);
             break;
+        case 3:
+            modoDificil(escolha);
+            break;
     }
 }
 
@@ -43,64 +46,116 @@ function modoMedio(escolha) {
     if (document.getElementById(escolha).innerHTML == "") {
         document.getElementById(escolha).innerHTML = "x";
         tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
-        console.log(tabuleiro);
+
+
+
+        if (contRodada % 2 == 0) {
+            contRodada++;
+            checarVitoria();
+        }
+
+        if ((!vitoria) && (contRodada < 9)) {
+            //console.log(ganhando());
+
+            if (ganhando()) {
+                document.getElementById(escolhaMaquina).innerHTML = "o";
+                tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
+
+                contRodada++;
+            } else {
+                if (perdendo()) {
+                    document.getElementById(escolhaMaquina).innerHTML = "o";
+                    tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
+
+                    contRodada++;
+                } else {
+                    do {
+                        randomChoice = Math.floor(Math.random() * 9);
+                        console.log(randomChoice);
+                    } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
+                    document.getElementById(randomChoice).innerHTML = "o";
+                    tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
+
+                    contRodada++;
+                }
+
+            }
+            //armazenar as jogadas no vetor
+
+            document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
+            checarVitoria();
+        }
+    }
+}
+
+function modoDificil(escolha) {
+    console.log(tabuleiro);
+    if (document.getElementById(escolha).innerHTML == "") {
+        document.getElementById(escolha).innerHTML = "x";
+        tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
+        console.log("a" + contRodada);
+
         switch (contRodada) {
             case 0:
                 switch (escolha) {
-                    case 2:
-                        escolhaMaquina = 6;
-                        break;
-                    case 6:
-                        escolhaMaquina = 2;
-                        break;
-                    case 8:
+                    case 4:
                         escolhaMaquina = 0;
                         break;
                     default:
-                        escolhaMaquina = 8;
+                        escolhaMaquina = 4;
                         break;
                 }
+                tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
+                console.log(tabuleiro);
                 contRodada++;
                 document.getElementById(escolhaMaquina).innerHTML = "o";
                 tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
                 break;
+
+                tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
+                console.log(tabuleiro);
+                contRodada++;
+                document.getElementById(escolhaMaquina).innerHTML = "o";
+                tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
+                break;
+
             default:
                 if (contRodada % 2 == 0) {
                     contRodada++;
                     checarVitoria();
                 }
 
-                if ((!vitoria) && (contRodada < 9)) {
+                if ((!vitoria) && (contRodada < 7)) {
                     //console.log(ganhando());
-                    console.log(tabuleiro);
-                    if(ganhando()){
+                    if (ganhando()) {
                         document.getElementById(escolhaMaquina).innerHTML = "o";
                         tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
-                        console.log(tabuleiro);
+
                         contRodada++;
-                    }else{
-                        if (perdendo()){
+                    } else {
+                        if (perdendo()) {
                             document.getElementById(escolhaMaquina).innerHTML = "o";
                             tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
-                            console.log(tabuleiro);
+
                             contRodada++;
-                        }else{
+                        } else {
                             do {
                                 randomChoice = Math.floor(Math.random() * 9);
                                 console.log(randomChoice);
                             } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
                             document.getElementById(randomChoice).innerHTML = "o";
                             tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
-                            console.log(tabuleiro);
+
                             contRodada++;
                         }
-                    }
-                    }
-                //armazenar as jogadas no vetor
 
-                document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
-                checarVitoria();
-                break;
+                    }
+                    //armazenar as jogadas no vetor
+
+                    document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
+                    checarVitoria();
+                    break;
+                }
         }
     }
 }
@@ -111,7 +166,7 @@ function modoEazy(escolha) {
 
             document.getElementById(escolha).innerHTML = "x";
             tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
-            console.log(tabuleiro);
+
             contRodada++;
 
             checarVitoria();
@@ -123,7 +178,7 @@ function modoEazy(escolha) {
             } while ((tabuleiro[randomChoice] == "o") || (tabuleiro[randomChoice] == "x"));
             document.getElementById(randomChoice).innerHTML = "o";
             tabuleiro[randomChoice] = document.getElementById(randomChoice).innerHTML;
-            console.log(tabuleiro);
+
             contRodada++;
         }
         //armazenar as jogadas no vetor
@@ -145,7 +200,7 @@ function multiplayer(escolha) {
         }
         //armazenar as jogadas no vetor
         tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
-        console.log(tabuleiro);
+
         contRodada++;
         document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
         checarVitoria();
@@ -173,8 +228,6 @@ function ganhando() {
     for (let cont = 0; cont < 9; cont++) {
         tabuleiro[cont] = tabuleiroTemp[cont];
     }
-    console.log("!!!!!!!!!oooooooooo!" + tabuleiroTemp);
-    console.log("ooooooooooooo----------" + tabuleiro);
     return result;
 }
 function perdendo() {
@@ -197,22 +250,20 @@ function perdendo() {
     for (let cont = 0; cont < 9; cont++) {
         tabuleiro[cont] = tabuleiroTemp[cont];
     }
-    console.log("!!!!!!!!!oooooooooo!" + tabuleiroTemp);
-    console.log("ooooooooooooo----------" + tabuleiro);
     return result;
 }
 
 function preverVitoria() {
     if ((tabuleiro[0] == tabuleiro[1] && tabuleiro[1] == tabuleiro[2]) ||
-    (tabuleiro[3] == tabuleiro[4] && tabuleiro[4] == tabuleiro[5]) ||
-    (tabuleiro[6] == tabuleiro[7] && tabuleiro[7] == tabuleiro[8]) ||
-    (tabuleiro[0] == tabuleiro[3] && tabuleiro[3] == tabuleiro[6]) ||
-    (tabuleiro[1] == tabuleiro[4] && tabuleiro[4] == tabuleiro[7]) ||
-    (tabuleiro[2] == tabuleiro[5] && tabuleiro[5] == tabuleiro[8]) ||
-    (tabuleiro[0] == tabuleiro[4] && tabuleiro[4] == tabuleiro[8]) ||
-    (tabuleiro[2] == tabuleiro[4] && tabuleiro[4] == tabuleiro[6])) {
-    return true;
-    }else{
+        (tabuleiro[3] == tabuleiro[4] && tabuleiro[4] == tabuleiro[5]) ||
+        (tabuleiro[6] == tabuleiro[7] && tabuleiro[7] == tabuleiro[8]) ||
+        (tabuleiro[0] == tabuleiro[3] && tabuleiro[3] == tabuleiro[6]) ||
+        (tabuleiro[1] == tabuleiro[4] && tabuleiro[4] == tabuleiro[7]) ||
+        (tabuleiro[2] == tabuleiro[5] && tabuleiro[5] == tabuleiro[8]) ||
+        (tabuleiro[0] == tabuleiro[4] && tabuleiro[4] == tabuleiro[8]) ||
+        (tabuleiro[2] == tabuleiro[4] && tabuleiro[4] == tabuleiro[6])) {
+        return true;
+    } else {
         return false;
     }
 }
@@ -300,6 +351,11 @@ function trocarModo() {
             document.getElementById("modo").innerHTML = "Modo: médio";
             break;
         case 2:
+            limpar()
+            modo = 3;
+            document.getElementById("modo").innerHTML = "Modo: Difícil";
+            break;
+        case 3:
             limpar()
             modo = 0;
             document.getElementById("modo").innerHTML = "Modo: multiplayer";
