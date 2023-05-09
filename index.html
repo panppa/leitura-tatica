@@ -1,57 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <title>Leitura tática</title>
+    <title>Leitura Tática</title>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
-
 <body>
-    <h1>Leitura tática</h1>
-    <div class="conteudo">
-        <div class="resumo">
-            <h2>Jogo da Velha</h2>
-            <p>Os jogos de estratégia têm uma longa história que remonta aos tempos antigos. O jogo da velha, por exemplo, é considerado um dos jogos mais antigos do mundo, com evidências de que ele já era jogado no antigo Egito</p>
-            <p>Apesar de sua simplicidade, é um ótimo jogo para iniciar no mundo dos jogos de estratégia, além de ser o jogo perfeito para crianças e idosos uma vez que suas regras são fáceis de compreender.</p>
+    <header>
+        <p>logo</p>
+        <form action="#" method="get">
+            <input type="text" aria-placeholder="Pesquise por um livro" id="pesquisa">
+            <input type="submit" value="Psesquisar">
+        </form>
+        <p class="nomeMarca">Leitura tática</p>
+    </header>
+    <section class="section">
+        <div class="grid">
+            <div><p>xadrez</p></div>
+            <div><p>damas</p></div>
+            <div><p>poker</p></div>
+            <div><p>jogo da velha</p></div>
         </div>
-        <div class="jogo">
-            <h2 id="textoJogo">Vez de x</h2>
-            <div class="tabuleiro" id="tabuleiro">
-                <div class="linha">
-                    <div id="0"></div>
-                    <div id="1"></div>
-                    <div id="2"></div>
-                </div>
-                <div class="linha">
-                    <div id="3"></div>
-                    <div id="4"></div>
-                    <div id="5"></div>
-                </div>
-                <div class="linha">
-                    <div id="6"></div>
-                    <div id="7"></div>
-                    <div id="8"></div>
-                </div>
-            </div>
-            <div class="controle">
-                <p id="rodada">Rodada: 0</p>
-                <p id="modo">Modo: multiplayer</p>
-                <p id="reiniciar">Reiniciar</p>
-            </div>
-        </div>
-    </div>
-    <div>
-        Lívros relacionados ao assunto:
-        <figure><img class="livro" src="images/EstrategiasParaAprenderEstrategias.png" alt=""></figure>
-        <figure><img class="livro" src="images/tictactome.jpg" alt=""></figure>
 
-    </div>
+    </section>
 </body>
-
-<script src="js/script.js"></script>
-
 </html>

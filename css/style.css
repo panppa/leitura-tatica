@@ -1,3 +1,6 @@
+*{
+    margin: 0px;
+}
 body{
     background-color: rgb(255, 248, 219);
     color: rgb(0, 22, 119);
@@ -54,4 +57,34 @@ h1{
 }
 .livro{
     width: 100px;
+}
+
+/*-------------------------------------------------*/
+
+header{
+    background-color: black;
+    color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+.grid div{
+    background-color: black;
+    color: white;
+    margin-top: 20px;
+    height: 200px;
+    width: 200px;
+    
+
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(600px , 1fr));
+    gap:3px;
+    text-align: center;
+}
+.section{
+    font-display: flex;
+    justify-content: center;
+    text-align: center;
 }
