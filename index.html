@@ -6,24 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Leitura Tática</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
 </head>
 <body>
     <header>
-        <p>logo</p>
+        <p>Leitura tática</p>
         <form action="#" method="get">
             <input type="text" aria-placeholder="Pesquise por um livro" id="pesquisa">
             <input type="submit" value="Psesquisar">
         </form>
-        <p class="nomeMarca">Leitura tática</p>
+        <p class="nomeMarca">Menu</p>
     </header>
+
+    <h1>Leitura tática</h1>
+
     <section class="section">
         <div class="grid">
-            <div><p>xadrez</p></div>
-            <div><p>damas</p></div>
-            <div><p>poker</p></div>
-            <div><p>jogo da velha</p></div>
+            <div id="xadrez"><p>xadrez</p></div>
+            <div id="damas"><p>damas</p></div>
+            <div id="poker"><p>poker</p></div>
+            <div id="tictactoe" onclick="document.location='../pages/jogoDaVelha.html'"><p>jogo da velha</p></div>
         </div>
-
+    </section>
+    <section class="secLoja">
+        <h2>Livros</h2>
     </section>
 </body>
 </html>
