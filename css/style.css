@@ -58,10 +58,9 @@ h1,h2{
     text-align: center;
 }
 .livro{
-    width: 100px;
+    height: 150px;
 }
 
-/*-------------------------------------------------*/
 *{
     margin: 0px;
 }
@@ -130,4 +129,16 @@ header{
 }
 .secLoja{
     margin-top: 50px;
+}
+.relacionados{
+    display: flex;
+    padding: 10px;
+}
+.relacionados figure{
+    padding: 10px;
+    height: fit-content;
+} 
+.ilustracaoJogo{
+    margin: 40px;
+    width: 450px;
 }
