@@ -1,9 +1,3 @@
-/**
-Author name : Gabriel de Faria Campos
-Created at : 4/27/2023  10:17:08 PM
-Updated at :4/27/2023  10:18:40 PM
-*/
-
 //variavel que armazena o modo de jogo
 let modo = 0;
 //vetor que representa o tabuleiro (é mais simples que usar matriz ☺)
@@ -55,7 +49,6 @@ function modoMedio(escolha) {
         }
 
         if ((!vitoria) && (contRodada < 9)) {
-            //console.log(ganhando());
 
             if (ganhando()) {
                 document.getElementById(escolhaMaquina).innerHTML = "o";
@@ -126,7 +119,6 @@ function modoDificil(escolha) {
                 }
 
                 if ((!vitoria) && (contRodada < 7)) {
-                    //console.log(ganhando());
                     if (ganhando()) {
                         document.getElementById(escolhaMaquina).innerHTML = "o";
                         tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
@@ -150,7 +142,6 @@ function modoDificil(escolha) {
                         }
 
                     }
-                    //armazenar as jogadas no vetor
 
                     document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
                     checarVitoria();
@@ -181,7 +172,6 @@ function modoEazy(escolha) {
 
             contRodada++;
         }
-        //armazenar as jogadas no vetor
 
         document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
         checarVitoria();
@@ -193,12 +183,10 @@ function multiplayer(escolha) {
             document.getElementById("textoJogo").innerHTML = "Vez de o";
             document.getElementById(escolha).innerHTML = "x";
 
-            //para escolha automatica do multiplayer
         } else if (modo == 0) {
             document.getElementById("textoJogo").innerHTML = "Vez de x";
             document.getElementById(escolha).innerHTML = "o";
         }
-        //armazenar as jogadas no vetor
         tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
 
         contRodada++;
@@ -363,7 +351,6 @@ function trocarModo() {
     }
 }
 
-//limpar tabuleiro
 function limpar() {
     vitoria = false;
     document.getElementById("tabuleiro").style.pointerEvents = "all";
