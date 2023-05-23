@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
     <title>formúlario</title>   
+    <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
+
     <style>
       *{
         margin: 0px;
@@ -33,6 +35,11 @@
 
    
     </style>
+    <script>
+        function bconfirmar(){
+            alert ("Sua compra foi realizada com sucesso!")
+        }
+    </script>
 </head>
 <body>
      
@@ -44,22 +51,22 @@
         
             <p class="form">
                 <label for="nome">Nome</label><br>
-                <input type="text" id="nome" name="Nome" placeholder="Insira seu o nome" size="20">
+                <input type="text" id="nome" name="Nome" placeholder="Insira seu o nome" size="20" required>
             </p><br>
 
             <p class="form">
                 <label for="cpf">CPF</label><br>
-                <input type="text" id="cpf" name="cpf" placeholder="Insira o seu cpf" size="20">
+                <input type="text" id="cpf" name="cpf" placeholder="Insira o seu cpf" size="20" required>
             </p><br>
 
             <p class="form">
                 <label for="email">Email</label><br>
-                <input type="email" id="email" name="email" placeholder="Insira o seu email" size="20">
+                <input type="email" id="email" name="email" placeholder="Insira o seu email" size="20" required>
             </p><br>
 
             <p class="form">
                 <label for="fone">Telefone</label><br>
-                <input type="tel" id="fone" name="fone" placeholder="Insira o seu telefone" >
+                <input type="tel" id="fone" name="fone" placeholder="Insira o seu telefone" required>
             </p><br>
 
             <p>
@@ -79,7 +86,7 @@
             </p><br>
 
             <p>
-                <input type="submit" value="CONFIRMAR" title="Enviar dados">
+                <input type="submit" value="CONFIRMAR" title="Enviar dados" onclick="bconfirmar()">
                 <input type="reset" value="CANCELAR" title="Limpar dados">
             </p>
 
