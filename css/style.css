@@ -253,3 +253,26 @@ color: #000000;
     align-items: center;
 
 }
+form button{
+    background: rgb(43, 43, 43);
+    text-decoration: none;
+    width:150px;
+    height: 30px;
+    margin:2px;
+    font-size: 15px;
+    border: none;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    font-family: 'Poppins';
+    font-size: 0.7em;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    border-radius: 8px;
+}
+form button:hover{
+text-decoration: none;
+border: 1px solid rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+color: #000000;
+}
