@@ -1,100 +1,165 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
-    <title>formúlario</title>   
+    <title>formúlario</title>
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="shortcut icon" href="../images/icon.png" type="image/x-icon">
-
-    <style>
-      *{
-        margin: 0px;
-    }
-    body{
-        background-image: url("../images/fundo.png");
-        color: rgb(0, 22, 119);
-        font-family: cursive;
-    }
-
-    h1{
-        margin-top: 10px;
-        margin-left: 35px;
-        margin-right: 40px;
-        border-bottom: 2px solid rgba(204, 15, 47);
-        width: 200px;
-        padding: 5px;
-    }
-
-    .secao form{
-        margin-left: 20px;
-        margin-top: 10px;
-
-    }
-
-
-   
-    </style>
     <script>
-        function bconfirmar(){
-            alert ("Sua compra foi realizada com sucesso!")
+        function conferirForm() {
+                alert("Sua compra foi realizada com sucesso!");
         }
     </script>
+    <style>
+        .secao{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        body {
+            align-items: center;
+            text-align: center;
+        }
+
+        form{
+            color: white;
+            background-color: rgba(0, 0, 0, 0.445);
+            width: fit-content;
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(1px);
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .camposDeTexto {
+            display: flex;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 30px;
+        }
+        .camposDeTexto div{
+            display: flex;
+            width: 60%;
+            text-align: center;
+            justify-content: space-around;
+        }
+        .camposDeTexto p{
+            padding: 10px;
+            width:fit-content;
+            text-align: left;
+        }
+       .camposDeTexto input{
+            height: 25px;
+            width: 250px;
+            border: none;
+	        outline: none;
+            border-radius: 8px;
+            background-color: rgb(241, 241, 241);
+        }
+        .camposDeTexto :focus{
+            background-color: white;
+            transition: 0.1s;
+        }
+        .radioBtns{
+            margin-top: 10px;
+            width: 70%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .tituloFormaPag{
+            font-size: larger;
+        }
+        button{
+            background-color: white;
+            border: none;
+            margin-left: 20px;
+            margin-right: 20px;
+            border-radius:5px;
+            width: 100px;
+            margin-top: 10px;
+            height: 30px;
+            cursor: pointer;
+        }
+        button:hover {
+	        border: 1px solid rgb(255,255,255);
+	        background-color: rgb(0,0,0);
+	        color: #fff;
+        }
+    </style>
 </head>
+
 <body>
-     
+
     <section class="secao" id="form">
 
         <h1>Dados do cliente</h1>
 
-        <form action="../index.html" method="get" target="_blank">
-        
-            <p class="form">
-                <label for="nome">Nome</label><br>
-                <input type="text" id="nome" name="Nome" placeholder="Insira seu o nome" size="20" required>
-            </p><br>
+        <form onsubmit="conferirForm()" method="post" action="../index.html">
+            <div class="camposDeTexto">
 
-            <p class="form">
-                <label for="cpf">CPF</label><br>
-                <input type="text" id="cpf" name="cpf" placeholder="Insira o seu cpf" size="20" required>
-            </p><br>
+                <div>
+                    <p>
+                        <label for="nome">Nome</label><br>
+                        <input type="text" id="nome" name="Nome"  size="20" required>
+                    </p>
+                    <p>
+                        <label for="cpf">CPF</label><br>
+                        <input type="text" id="cpf" name="cpf"  size="20" required>
+                    </p>
+                </div>
 
-            <p class="form">
-                <label for="email">Email</label><br>
-                <input type="email" id="email" name="email" placeholder="Insira o seu email" size="20" required>
-            </p><br>
+                <div>
+                    <p>
+                        <label for="email">Email</label><br>
+                        <input type="email" id="email" name="email"  size="20" required>
+                    </p>    
+                    <p>
+                        <label for="fone">Telefone</label><br>
+                        <input type="tel" id="fone" name="fone"  required>
+                    </p>
+                </div>
+            </div>
+            <p class="tituloFormaPag">Escolha a forma de pagamento</p>
+            <div class="radioBtns">
+                
+                <p>
+                    <input type="radio" id="debito" name="tipopg" value="DEBITO">
+                    <label for="debito">DÉBITO</label><br>
+                </p>
+                
+                <p>
+                    <input type="radio" id="credito" name="tipopg" value="CREDITo">
+                    <label for="credito">Crédito</label><br>
+                </p>
 
-            <p class="form">
-                <label for="fone">Telefone</label><br>
-                <input type="tel" id="fone" name="fone" placeholder="Insira o seu telefone" required>
-            </p><br>
-
+                <p>
+                    <input type="radio" id="pix" name="tipopg" value="PIX">
+                    <label for="pix">PIX</label><br>
+                </p>
+                
+                <p>
+                    <input type="radio" id="boleto" name="tipopg" value="BOLETO">
+                    <label for="boleto">Boleto</label>
+                </p>
+            </div>
+    
             <p>
-                <label for="">Escolha a forma de pagamento</label><br><br>
-
-                <input type="radio" id="debito" name="tipopg"  value="DEBITO">
-                <label for="debito">DÉBITO</label><br>
-
-                <input type="radio" id="credito" name="tipopg" value="CREDITo">
-                <label for="credito">Crédito</label><br>
-
-                <input type="radio" id="pix" name="tipopg" value="PIX">
-                <label for="pix">PIX</label><br>
-
-                <input type="radio" id="boleto" name="tipopg" value="BOLETO">
-                <label for="boleto">Boleto</label>
-            </p><br>
-
-            <p>
-                <input type="submit" value="CONFIRMAR" title="Enviar dados" onclick="bconfirmar()">
-                <input type="reset" value="CANCELAR" title="Limpar dados">
+                <button type="submit" >Confirmar</button>
+                <button type="reset" >Limpar</button>
             </p>
 
         </form>
-
     </section>
 
-    
-    
+
+
 </body>
+
 </html>

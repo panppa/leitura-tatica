@@ -1,18 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100&display=swap');
+
 *{
     margin: 0px;
 }
 body{
     background-image: url("../images/fundo.png");
     color: rgb(0, 22, 119);
-    font-family: cursive;
+    font-family: 'Poppins';
 }
-h1,h2{
-    margin-left:40px;
-    margin-right:40px;
+h2{
+    margin: 40px;
+    margin-bottom: 10px;
     text-align: center;
-    border-bottom: 2px solid rgba(204, 15, 47);
     padding-bottom: 2px;
-    
+}
+h1{
+    margin: 40px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-bottom: 2px;
 }
 #tabuleiro {
     display: flex;
@@ -39,6 +45,15 @@ h1,h2{
 .linha div:hover {
     background-color: aliceblue;
 }
+.controle{
+    margin-top: 20px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+}
 
 .conteudo{
     display: flex;
@@ -52,7 +67,9 @@ h1,h2{
 }
 .resumo{
     width: 50%;
-    padding: 20px;
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: justify;
 }
 .resumo h2{
     text-align: center;
@@ -109,36 +126,130 @@ header{
 #xadrez{
     background-image: url("../images/chess.jpg");
     background-size: cover;
-
+	border-radius: 8px;
 }
 #damas{
     background-image: url("../images/damas.jpg");
     background-position: center;
     background-size: 180%;
+	border-radius: 8px;
 }
 #poker{
     background-image: url("../images/poker.jpg");
     background-size: 140%;
     background-position: center;
-    
-    
+    border-radius: 8px;
 }
 #tictactoe{
     background-image: url("../images/tictactoe.jpg");
     background-size: cover;
+	border-radius: 8px;
+}
+.jogo figure{
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
 }
 .secLoja{
     margin-top: 50px;
 }
 .relacionados{
     display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-left: 20px;
     padding: 10px;
 }
+.relacionados div{
+    display: flex;
+    flex-direction: row;
+}
+
+
 .relacionados figure{
     padding: 10px;
     height: fit-content;
 } 
 .ilustracaoJogo{
-    margin: 40px;
-    width: 450px;
+    width: 70%;
+    border-radius: 9px;
+    border: solid black 1px;
+    box-shadow: rgb(92, 92, 92) 8px 8px 8px;
+}
+
+.carlos input {
+	font-family: 'Poppins';
+	font-size: 0.7em;
+	border-radius: 5px;
+	border: none;
+	outline: none;
+}
+
+.btn-enviar {
+	background: rgb(255,255,255);
+	border: 1px solid rgb(255,255,255);
+	font-family: 'Poppins';
+	font-size: 0.7em;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: 0.4s;
+}
+
+.btn-enviar:hover {
+	border: 1px solid rgb(255,255,255);
+	background-color: rgb(0,0,0);
+	color: #fff;
+}
+@media (max-width:600px){
+.conteudo{
+        flex-direction: column;
+}
+    
+}
+
+button a{
+    color: white;
+}
+button a:hover{
+    color: black;
+}
+button{
+    background: rgb(43, 43, 43);
+    text-decoration: none;
+    width:150px;
+    height: 30px;
+    margin:2px;
+    font-size: 15px;
+    border: none;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    font-family: 'Poppins';
+    font-size: 0.7em;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    border-radius: 8px;
+}
+button:hover{
+text-decoration: none;
+border: 1px solid rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+color: #000000;
+}
+.secLoja img{
+    height: 250px;
+}
+.secLoja table{
+    align-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+.secLoja table tr{
+    align-items: center;
+    width: 700px;
+    text-align: center;
+    align-items: center;
+
 }

@@ -1,6 +1,4 @@
-//variavel que armazena o modo de jogo
 let modo = 0;
-//vetor que representa o tabuleiro (é mais simples que usar matriz ☺)
 let tabuleiroTemp = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 let result = false;
 let tabuleiro = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -18,7 +16,7 @@ document.getElementById("8").onclick = function () { jogo(8) };
 
 let vitoria = false;
 let contRodada = 0;
-//função principal 
+
 function jogo(escolha) {
     switch (modo) {
         case 0:
@@ -86,8 +84,8 @@ function modoDificil(escolha) {
     if (document.getElementById(escolha).innerHTML == "") {
         document.getElementById(escolha).innerHTML = "x";
         tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
-        console.log("a" + contRodada);
-
+        contRodada++;
+        checarVitoria();
         switch (contRodada) {
             case 0:
                 switch (escolha) {
@@ -103,22 +101,15 @@ function modoDificil(escolha) {
                 contRodada++;
                 document.getElementById(escolhaMaquina).innerHTML = "o";
                 tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
+                document.getElementById("rodada").innerHTML = ("Rodada: " + contRodada);
                 break;
-
-                tabuleiro[escolha] = document.getElementById(escolha).innerHTML;
-                console.log(tabuleiro);
-                contRodada++;
-                document.getElementById(escolhaMaquina).innerHTML = "o";
-                tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
-                break;
-
             default:
                 if (contRodada % 2 == 0) {
                     contRodada++;
                     checarVitoria();
                 }
 
-                if ((!vitoria) && (contRodada < 7)) {
+                if ((!vitoria) && (contRodada < 9)) {
                     if (ganhando()) {
                         document.getElementById(escolhaMaquina).innerHTML = "o";
                         tabuleiro[escolhaMaquina] = document.getElementById(escolhaMaquina).innerHTML;
